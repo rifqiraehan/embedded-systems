@@ -44,6 +44,10 @@
 osThreadId RedLEDHandle;
 osThreadId GreenLEDHandle;
 osThreadId YellowLEDHandle;
+
+uint8_t redState = 0;
+uint8_t greenState = 0;
+uint8_t yellowState = 0;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -233,6 +237,7 @@ void StartRedLED(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	  redState ^= 1;
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
 	  osDelay(200);
   }
@@ -252,6 +257,7 @@ void StartGreenLED(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	greenState ^= 1;
 	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_3);
     osDelay(500);
   }
@@ -271,6 +277,7 @@ void StartYellowLED(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	yellowState ^= 1;
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
     osDelay(700);
   }
